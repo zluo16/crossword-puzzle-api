@@ -1,0 +1,2 @@
+class GridBox < ApplicationRecord
+end
