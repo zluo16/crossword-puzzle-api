@@ -7,7 +7,7 @@ class Puzzle < ApplicationRecord
     puzzle = Puzzle.create
     inc = 1
     while inc < 121
-      GridBox.create(boxId: inc, puzzle: puzzle, value: "")
+      GridBox.create(boxId: inc, puzzle: puzzle, value: "", className: "filled")
       inc += 1
     end
     puzzle
@@ -23,7 +23,11 @@ class Puzzle < ApplicationRecord
 
       word_string.split("").each do |char|
         box = self.grid_boxes[ind]
-        box.update(key: char)
+        if ind == boxId - 1
+          box.update(key: char, className: "empty numbered")
+        else
+          box.update(key: char, className: "empty")
+        end
         ind += 1
       end
 
@@ -31,7 +35,11 @@ class Puzzle < ApplicationRecord
 
       word_string.split("").each do |char|
         box = self.grid_boxes[ind]
-        box.update(key: char)
+        if ind == boxId - 1
+          box.update(key: char, className: "empty numbered")
+        else
+          box.update(key: char, className: "empty")
+        end
         ind += 15
       end
 

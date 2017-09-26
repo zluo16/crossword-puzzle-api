@@ -4,6 +4,7 @@ class Api::V1::PuzzlesController < ApplicationController
   # GET /puzzles
   def index
     @puzzles = Puzzle.all
+    render json: @puzzles
   end
 
   # GET /puzzles/1

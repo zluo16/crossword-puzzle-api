@@ -1,3 +1,3 @@
 class GridBoxSerializer < ActiveModel::Serializer
-  attributes :id, :boxId, :type, :key, :value
+  attributes :id, :boxId, :className, :key, :value
 end
