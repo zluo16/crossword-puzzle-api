@@ -4,8 +4,6 @@ class Api::V1::WordsController < ApplicationController
   # GET /words
   def index
     @words = Word.all
-
-    render json: @words
   end
 
   # GET /words/1

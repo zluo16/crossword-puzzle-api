@@ -1,4 +1,4 @@
-class GridBoxesController < ApplicationController
+class Api::V1::GridBoxesController < ApplicationController
   before_action :set_grid_box, only: [:show, :update, :destroy]
 
   # GET /grid_boxes

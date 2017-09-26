@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 data = []
-offset = 0
-200.times do
+offset = 2656
+5800.times do
   d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}")
   parsed = JSON.parse(d)
   parsed.each do |object|

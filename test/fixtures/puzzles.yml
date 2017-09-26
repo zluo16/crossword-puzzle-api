@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  times_played: 1
+  rating: 1
+
+two:
+  times_played: 1
+  rating: 1
