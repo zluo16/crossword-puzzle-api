@@ -1,18 +1,15 @@
 class Api::V1::PuzzlesController < ApplicationController
   before_action :set_puzzle, only: [:show, :update, :destroy]
 
-  # GET /puzzles
   def index
     @puzzles = Puzzle.all
     render json: @puzzles
   end
 
-  # GET /puzzles/1
   def show
     render json: @puzzle
   end
 
-  # POST /puzzles
   def create
     @puzzle = Puzzle.new(puzzle_params)
 
@@ -23,7 +20,6 @@ class Api::V1::PuzzlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /puzzles/1
   def update
     if @puzzle.update(puzzle_params)
       render json: @puzzle
@@ -32,18 +28,22 @@ class Api::V1::PuzzlesController < ApplicationController
     end
   end
 
-  # DELETE /puzzles/1
   def destroy
     @puzzle.destroy
   end
 
+  def random_gen
+    @puzzle = Puzzle.find(3)
+    @puzzle.empty_grid
+    @puzzle.crossword_random_gen
+    render json: @puzzle
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_puzzle
       @puzzle = Puzzle.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
     def puzzle_params
       params.require(:puzzle).permit(:times_played, :rating)
     end
