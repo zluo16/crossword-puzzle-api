@@ -31,6 +31,22 @@ end
 
 db_words.each{ |word| Word.create(answer: word["answer"], question: word["question"], value: word["value"]) }
 
+def new_random_puzzle
+  puzzle = Puzzle.new_blank_puzzle
+  id = puzzle.id
+  puzzle.crossword_random_gen
+
+  if puzzle.puzzle_words.length < 13
+    puzzle.empty_grid
+    puzzle = Puzzle.find(id)
+    puzzle.crossword_random_gen
+  elsif puzzle.grid_boxes.find{|b| b.boxId == 32}.className == 'empty'
+    puzzle.empty_grid
+    puzzle = Puzzle.find(id)
+    puzzle.crossword_random_gen
+  end
+end
+
 # puzzle = Puzzle.first
 # boxIds = puzzle.puzzle_words.map{|w| w.boxId}
 #

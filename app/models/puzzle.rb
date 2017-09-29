@@ -94,6 +94,14 @@ class Puzzle < ApplicationRecord
 
     words.each{ |word| self.add_word(word[:word], word[:alignment], word[:boxId]) }
 
+    if self.grid_boxes.find{ |b| b.boxId === 32 }.className === 'empty'
+      self.empty_grid
+      self.crossword_random_gen
+    elsif self.puzzle_words.length < 13
+      self.empty_grid
+      self.crossword_random_gen
+    end
+
   end
 
 end
