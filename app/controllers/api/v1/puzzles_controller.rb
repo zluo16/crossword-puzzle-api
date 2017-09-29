@@ -33,9 +33,7 @@ class Api::V1::PuzzlesController < ApplicationController
   end
 
   def random_gen
-    @puzzle = Puzzle.find(3)
-    @puzzle.empty_grid
-    @puzzle.crossword_random_gen
+    @puzzle = Puzzle.order("RANDOM()").first
     render json: @puzzle
   end
 
