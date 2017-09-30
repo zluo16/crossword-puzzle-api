@@ -43,7 +43,7 @@ def new_random_puzzle
   # end
 end
 
-5.times do
+4.times do
   new_random_puzzle
 end
 

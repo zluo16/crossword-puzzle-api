@@ -101,4 +101,8 @@ class Puzzle < ApplicationRecord
 
   end
 
+  def is_valid_crossword
+    self.grid_boxes.find{ |b| b.boxId == 31 }.className == "filled"
+  end
+
 end
