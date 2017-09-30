@@ -27,6 +27,7 @@ class Puzzle < ApplicationRecord
   def add_word(word, align, boxId)
     PuzzleWord.create(word: word, puzzle: self, alignment: align, boxId: boxId)
     grid = self.grid_boxes.sort_by{|b| b.boxId}
+    byebug
 
     ind = boxId - 1
     word_string = word.answer.upcase
@@ -46,7 +47,7 @@ class Puzzle < ApplicationRecord
     else
 
       word_string.split("").each do |char|
-        box = self.grid_boxes[ind]
+        box = grid[ind]
         if ind == boxId - 1
           box.update(key: char, className: "empty numbered")
         else
