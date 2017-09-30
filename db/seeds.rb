@@ -36,14 +36,14 @@ def new_random_puzzle
   id = puzzle.id
   puzzle.crossword_random_gen
 
-  while puzzle.puzzle_words.length < 13 || puzzle.grid_boxes.find{|b| b.boxId == 31}.className == 'empty'
-    puzzle.empty_grid
-    puzzle = Puzzle.find(id)
-    puzzle.crossword_random_gen
-  end
+  # while puzzle.puzzle_words.length < 13 || puzzle.grid_boxes.find{|b| b.boxId == 31}.className == 'empty'
+  #   puzzle.empty_grid
+  #   puzzle = Puzzle.find(id)
+  #   puzzle.crossword_random_gen
+  # end
 end
 
-15.times do
+5.times do
   new_random_puzzle
 end
 
