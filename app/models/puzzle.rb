@@ -27,7 +27,6 @@ class Puzzle < ApplicationRecord
   def add_word(word, align, boxId)
     PuzzleWord.create(word: word, puzzle: self, alignment: align, boxId: boxId)
     grid = self.grid_boxes.sort_by{|b| b.boxId}
-    byebug
 
     ind = boxId - 1
     word_string = word.answer.upcase
