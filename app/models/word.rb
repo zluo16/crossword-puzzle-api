@@ -13,7 +13,7 @@ class Word < ApplicationRecord
   def self.create_words(offset)
     data = []
     offset = offset
-    20.times do
+    200.times do
       d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}")
       parsed = JSON.parse(d)
       parsed.each do |object|
