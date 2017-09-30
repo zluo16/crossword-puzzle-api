@@ -6,30 +6,30 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-data = []
-offset = 0
-15000.times do
-  d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}")
-  parsed = JSON.parse(d)
-  parsed.each do |object|
-    if object['answer'] != nil && object['question'] != nil
-      data.push(object)
-    end
-  end
-  offset += parsed.length
-end
-
-
-single_words = data.select{ |clue| clue["answer"].split(" ").length < 2 }
-
-db_words = single_words.select do |word|
-  if word["value"]
-    word["answer"].length == 5 || word["answer"].length == 3 || word["answer"].length == 8
-  end
-end
-
-
-db_words.each{ |word| Word.create(answer: word["answer"], question: word["question"], value: word["value"]) }
+# data = []
+# offset = 0
+# 15000.times do
+#   d = RestClient.get("http://jservice.io/api/clues.json?offset=#{offset}")
+#   parsed = JSON.parse(d)
+#   parsed.each do |object|
+#     if object['answer'] != nil && object['question'] != nil
+#       data.push(object)
+#     end
+#   end
+#   offset += parsed.length
+# end
+#
+#
+# single_words = data.select{ |clue| clue["answer"].split(" ").length < 2 }
+#
+# db_words = single_words.select do |word|
+#   if word["value"]
+#     word["answer"].length == 5 || word["answer"].length == 3 || word["answer"].length == 8
+#   end
+# end
+#
+#
+# db_words.each{ |word| Word.create(answer: word["answer"], question: word["question"], value: word["value"]) }
 
 def new_random_puzzle
   puzzle = Puzzle.new_blank_puzzle
