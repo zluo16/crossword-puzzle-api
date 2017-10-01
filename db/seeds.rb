@@ -46,7 +46,9 @@ end
 def trim_db
   Word.all.reverse.each do |word|
     break if word.id == 10001
-    word.destroy
+    if !PuzzleWord.all.map { |pw| pw.word_id }.include?(word.id)
+      word.destroy
+    end
   end
 end
 
