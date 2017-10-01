@@ -43,9 +43,18 @@ def new_random_puzzle
   # end
 end
 
-10.times do
-  new_random_puzzle
+def trim_db
+  Word.all.reverse.each do |word|
+    break if word.id == 10001
+    word.destroy
+  end
 end
+
+trim_db
+
+# 10.times do
+#   new_random_puzzle
+# end
 
 # puzzle = Puzzle.first
 # boxIds = puzzle.puzzle_words.map{|w| w.boxId}
