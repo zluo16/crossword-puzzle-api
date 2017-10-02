@@ -44,10 +44,13 @@ def new_random_puzzle
 end
 
 def trim_db
+  it = 0
   Word.all.reverse.each do |word|
-    break if word.id == 5800
+    # break if word.id == 5800
+    break if it == 2
     if !PuzzleWord.all.map { |pw| pw.word_id }.include?(word.id)
       word.destroy
+      it += 1
     end
   end
 end
