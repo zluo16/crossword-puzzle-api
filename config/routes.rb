@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       get '/puzzles/generate', to: 'puzzles#random_gen'
 
+      resources :users
       resources :words
       resources :grid_boxes
       resources :puzzle_words
