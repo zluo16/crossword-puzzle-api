@@ -1,36 +1,23 @@
 class API::V1::UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  # GET /users
-  # GET /users.json
   def index
-    @users = User.all
+    @users = User.order(score: :desc).limit(5)
+    render json: @users
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
-  # POST /users
-  # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = User.new(user_name: params[:user_name],
+      password: params[:password],
+      password_confirmation: params[:password_confirmation])
 
     if @user.save
-      render :show, status: :created, location: @user
+      created_jwt = issue_token(id: @user.id)
+      render json: { user: @user. jwt: created_jwt }
     else
-      render json: @user.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /users/1
-  # PATCH/PUT /users/1.json
-  def update
-    if @user.update(user_params)
-      render :show, status: :ok, location: @user
-    else
-      render json: @user.errors, status: :unprocessable_entity
+      render json: {
+        error: 'Username already exists'
+      }, status: 422
     end
   end
 
