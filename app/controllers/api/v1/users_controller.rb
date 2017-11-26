@@ -14,7 +14,7 @@ class API::V1::UsersController < ApplicationController
 
     if @user.save
       created_jwt = issue_token(id: @user.id)
-      render json: { user: @user.id jwt: created_jwt }
+      render json: { user: @user.id, jwt: created_jwt }
     else
       render json: {
         error: 'Username already exists'
