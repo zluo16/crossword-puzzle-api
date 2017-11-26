@@ -8,17 +8,22 @@ class API::V1::UsersController < ApplicationController
 
   def create
     @user = User.new(user_name: params[:user_name],
+      score: 0,
       password: params[:password],
       password_confirmation: params[:password_confirmation])
 
     if @user.save
       created_jwt = issue_token(id: @user.id)
-      render json: { user: @user. jwt: created_jwt }
+      render json: { user: @user.id jwt: created_jwt }
     else
       render json: {
         error: 'Username already exists'
       }, status: 422
     end
+  end
+
+  def update
+    @user.update(score: params[:score])
   end
 
   # DELETE /users/1
