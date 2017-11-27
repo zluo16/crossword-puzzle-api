@@ -23,7 +23,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user.update(score: params[:score])
+    @user.update(score: @user.score + params[:score])
   end
 
   # DELETE /users/1
