@@ -23,7 +23,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def update
-    @user.update(score: @user.score + params[:score])
+    if @user.update(score: @user.score + params[:score])
+      redirect_to api_v1_users
+    else
+      render json: {
+        error: 'Score updating failed'
+      }, status: 422
+    end
   end
 
   # DELETE /users/1
