@@ -31,31 +31,31 @@
 #
 # db_words.each{ |word| Word.create(answer: word["answer"], question: word["question"], value: word["value"]) }
 
-def new_random_puzzle
-  puzzle = Puzzle.new_blank_puzzle
-  id = puzzle.id
-  puzzle.crossword_random_gen
+# def new_random_puzzle
+#   puzzle = Puzzle.new_blank_puzzle
+#   id = puzzle.id
+#   puzzle.crossword_random_gen
 
-  # while puzzle.puzzle_words.length < 13 || puzzle.grid_boxes.find{|b| b.boxId == 31}.className == 'empty'
-  #   puzzle.empty_grid
-  #   puzzle = Puzzle.find(id)
-  #   puzzle.crossword_random_gen
-  # end
-end
+#   # while puzzle.puzzle_words.length < 13 || puzzle.grid_boxes.find{|b| b.boxId == 31}.className == 'empty'
+#   #   puzzle.empty_grid
+#   #   puzzle = Puzzle.find(id)
+#   #   puzzle.crossword_random_gen
+#   # end
+# end
 
-def trim_db
-  it = 0
-  Word.all.reverse.each do |word|
-    # break if word.id == 5800
-    break if it == 2
-    if !PuzzleWord.all.map { |pw| pw.word_id }.include?(word.id)
-      word.destroy
-      it += 1
-    end
-  end
-end
+# def trim_db
+#   it = 0
+#   Word.all.reverse.each do |word|
+#     # break if word.id == 5800
+#     break if it == 2
+#     if !PuzzleWord.all.map { |pw| pw.word_id }.include?(word.id)
+#       word.destroy
+#       it += 1
+#     end
+#   end
+# end
 
-trim_db
+# trim_db
 
 # 10.times do
 #   new_random_puzzle
